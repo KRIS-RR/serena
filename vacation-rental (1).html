@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Villa Serena — Luxury Vacation Rental</title>
+<meta name="description" content="A premium coastal escape nestled above the bay. Book your unforgettable stay at Villa Serena.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ─── CSS Variables ─────────────────────────────────────── */
+  :root {
+    --white:   #FAFAF8;
+    --cream:   #F4F1EC;
+    --beige:   #E8E2D9;
+    --gold:    #C9A96E;
+    --gold-lt: #D9BE94;
+    --black:   #1A1714;
+    --ink:     #2E2A26;
+    --muted:   #7A7369;
+    --radius:  14px;
+    --shadow:  0 4px 32px rgba(26,23,20,.08);
+    --shadow-lg: 0 16px 64px rgba(26,23,20,.14);
+    --transition: .35s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ─── Reset & Base ──────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+
+  /* ─── Typography ────────────────────────────────────────── */
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; line-height: 1.15; }
+  h1 { font-size: clamp(2.8rem, 6vw, 5.2rem); }
+  h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+  h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+  p  { font-size: .975rem; color: var(--muted); }
+
+  /* ─── Utility ───────────────────────────────────────────── */
+  .container { max-width: 1220px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 96px 0; }
+  .section-label {
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .divider { width: 48px; height: 2px; background: var(--gold); margin: 20px 0 32px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .875rem; font-weight: 500; letter-spacing: .04em;
+    border-radius: 50px; cursor: pointer;
+    transition: var(--transition);
+    border: none;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: #b8924f; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,169,110,.3); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,.55);
+    backdrop-filter: blur(8px);
+  }
+  .btn-outline:hover { background: rgba(255,255,255,.15); transform: translateY(-2px); }
+  .btn-dark {
+    background: var(--black);
+    color: var(--white);
+  }
+  .btn-dark:hover { background: var(--ink); transform: translateY(-2px); }
+
+  /* ─── NAVBAR ────────────────────────────────────────────── */
+  #navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 20px 0;
+    transition: var(--transition);
+  }
+  #navbar.scrolled {
+    background: rgba(250,250,248,.92);
+    backdrop-filter: blur(20px);
+    padding: 14px 0;
+    box-shadow: 0 1px 0 var(--beige);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 500;
+    color: var(--white);
+    transition: color var(--transition);
+    letter-spacing: .02em;
+  }
+  #navbar.scrolled .nav-logo { color: var(--black); }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex; gap: 36px; align-items: center;
+  }
+  .nav-links a {
+    font-size: .85rem; font-weight: 400; letter-spacing: .04em;
+    color: rgba(255,255,255,.85);
+    transition: color var(--transition);
+  }
+  #navbar.scrolled .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--gold) !important; }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 50px;
+  }
+  #navbar.scrolled .nav-cta { background: var(--gold); color: var(--white) !important; }
+  .nav-cta:hover { background: #b8924f !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span {
+    width: 24px; height: 1.5px;
+    background: var(--white);
+    transition: var(--transition);
+  }
+  #navbar.scrolled .hamburger span { background: var(--black); }
+
+  /* ─── HERO ──────────────────────────────────────────────── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1800&q=80') center/cover no-repeat;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(135deg, rgba(26,23,20,.65) 0%, rgba(26,23,20,.3) 60%, transparent 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 720px;
+    padding-top: 100px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(201,169,110,.25);
+    border: 1px solid rgba(201,169,110,.5);
+    border-radius: 50px;
+    backdrop-filter: blur(8px);
+    font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--gold-lt);
+    margin-bottom: 28px;
+  }
+  .hero-badge::before { content: '✦'; font-size: .6rem; }
+  .hero-title { color: var(--white); margin-bottom: 20px; font-weight: 300; }
+  .hero-title em { color: var(--gold-lt); font-style: italic; }
+  .hero-sub { color: rgba(255,255,255,.75); font-size: 1.05rem; max-width: 480px; margin-bottom: 40px; }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center;
+    gap: 8px; color: rgba(255,255,255,.6); font-size: .75rem; letter-spacing: .1em;
+  }
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.6), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+  /* ─── GALLERY ───────────────────────────────────────────── */
+  #gallery { background: var(--cream); padding: 80px 0; }
+  .gallery-header { text-align: center; margin-bottom: 48px; }
+  .gallery-header .divider { margin: 20px auto 0; }
+  .slider-wrap { position: relative; overflow: hidden; border-radius: var(--radius); }
+  .slider-main {
+    display: flex; transition: transform .55s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+  }
+  .slide {
+    min-width: 100%; height: 520px;
+    background: var(--beige);
+    overflow: hidden;
+  }
+  .slide img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 6s ease;
+  }
+  .slide.active img { transform: scale(1.04); }
+  .slider-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px;
+    background: rgba(250,250,248,.85);
+    backdrop-filter: blur(8px);
+    border: none; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--black);
+    box-shadow: var(--shadow);
+    transition: var(--transition); z-index: 10;
+  }
+  .slider-btn:hover { background: var(--white); transform: translateY(-50%) scale(1.05); }
+  .slider-prev { left: 20px; }
+  .slider-next { right: 20px; }
+  .slider-dots {
+    display: flex; gap: 8px; justify-content: center; margin-top: 20px;
+  }
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--beige); border: 1.5px solid var(--muted);
+    cursor: pointer; transition: var(--transition);
+  }
+  .dot.active { background: var(--gold); border-color: var(--gold); width: 24px; border-radius: 4px; }
+  .thumbs {
+    display: flex; gap: 12px; margin-top: 16px; overflow-x: auto;
+    padding-bottom: 4px; scroll-snap-type: x mandatory;
+  }
+  .thumbs::-webkit-scrollbar { height: 4px; }
+  .thumbs::-webkit-scrollbar-thumb { background: var(--beige); border-radius: 4px; }
+  .thumb {
+    min-width: 90px; height: 62px;
+    border-radius: 8px; overflow: hidden; cursor: pointer;
+    opacity: .55; transition: var(--transition);
+    scroll-snap-align: start; flex-shrink: 0;
+    border: 2px solid transparent;
+  }
+  .thumb.active { opacity: 1; border-color: var(--gold); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Lightbox */
+  #lightbox {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(26,23,20,.95); backdrop-filter: blur(12px);
+    align-items: center; justify-content: center;
+  }
+  #lightbox.open { display: flex; }
+  .lb-img { max-height: 88vh; max-width: 90vw; border-radius: 10px; object-fit: contain; }
+  .lb-close {
+    position: absolute; top: 24px; right: 28px;
+    color: var(--white); font-size: 2rem; cursor: pointer;
+    background: none; border: none; line-height: 1; opacity: .7;
+    transition: opacity .2s;
+  }
+  .lb-close:hover { opacity: 1; }
+  .lb-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    color: var(--white); font-size: 2rem; cursor: pointer;
+    background: rgba(255,255,255,.1); border: none;
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .lb-arrow:hover { background: rgba(255,255,255,.2); }
+  .lb-prev { left: 24px; }
+  .lb-next { right: 24px; }
+
+  /* ─── ABOUT ─────────────────────────────────────────────── */
+  #about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-img {
+    border-radius: var(--radius); overflow: hidden;
+    height: 500px; box-shadow: var(--shadow-lg);
+  }
+  .about-img img { width: 100%; height: 100%; object-fit: cover; }
+  .about-text p { margin-bottom: 24px; font-size: 1rem; line-height: 1.8; }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin-top: 40px;
+  }
+  .stat-card {
+    background: var(--cream); border-radius: 12px;
+    padding: 20px 16px; text-align: center;
+    border: 1px solid var(--beige);
+  }
+  .stat-icon { font-size: 1.5rem; margin-bottom: 8px; }
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; color: var(--black);
+  }
+  .stat-label { font-size: .75rem; color: var(--muted); margin-top: 2px; }
+
+  /* ─── AMENITIES ─────────────────────────────────────────── */
+  #amenities { background: var(--cream); }
+  .amenities-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px; margin-top: 48px;
+  }
+  .amenity {
+    background: var(--white); border-radius: 14px;
+    padding: 28px 24px; display: flex; align-items: center; gap: 16px;
+    border: 1px solid var(--beige);
+    transition: var(--transition);
+  }
+  .amenity:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--gold); }
+  .amenity-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: var(--cream); display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .amenity-name { font-size: .9rem; font-weight: 500; color: var(--black); }
+  .amenity-desc { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+  /* ─── LOCATION ──────────────────────────────────────────── */
+  #location { background: var(--white); }
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .map-wrap {
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-lg); height: 420px;
+  }
+  .map-wrap iframe { width: 100%; height: 100%; border: none; }
+  .pois { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+  .poi {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; background: var(--cream);
+    border-radius: 10px; border: 1px solid var(--beige);
+  }
+  .poi-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .poi-name { font-size: .88rem; font-weight: 500; color: var(--black); }
+  .poi-dist { font-size: .78rem; color: var(--muted); margin-top: 1px; }
+
+  /* ─── REVIEWS ───────────────────────────────────────────── */
+  #reviews { background: var(--black); }
+  #reviews h2 { color: var(--white); }
+  #reviews .section-label { color: var(--gold); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px; margin-top: 48px;
+  }
+  .review-card {
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px; padding: 32px;
+    transition: var(--transition);
+  }
+  .review-card:hover { background: rgba(255,255,255,.07); transform: translateY(-4px); }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
+  .review-text { font-size: .92rem; color: rgba(255,255,255,.65); line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+  .reviewer { display: flex; align-items: center; gap: 12px; }
+  .reviewer-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--gold); display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white);
+    flex-shrink: 0;
+  }
+  .reviewer-name { font-size: .88rem; font-weight: 500; color: var(--white); }
+  .reviewer-date { font-size: .75rem; color: rgba(255,255,255,.4); margin-top: 2px; }
+
+  /* ─── CONTACT ───────────────────────────────────────────── */
+  #contact { background: var(--cream); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start; }
+  .contact-info h2 { margin-bottom: 12px; }
+  .contact-info p { margin-bottom: 32px; font-size: 1rem; }
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px;
+  }
+  .contact-detail-icon {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--white); border: 1px solid var(--beige);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-detail-text strong { display: block; font-size: .88rem; color: var(--black); margin-bottom: 2px; }
+  .contact-detail-text span { font-size: .82rem; color: var(--muted); }
+  .form-card {
+    background: var(--white); border-radius: 20px;
+    padding: 44px; box-shadow: var(--shadow-lg);
+    border: 1px solid var(--beige);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block; font-size: .78rem; font-weight: 500;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%; padding: 14px 18px;
+    background: var(--cream); border: 1.5px solid var(--beige);
+    border-radius: 10px; font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; color: var(--black);
+    transition: border-color .2s, box-shadow .2s;
+    outline: none; -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,169,110,.12);
+  }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-group input.error, .form-group textarea.error { border-color: #e05252; }
+  .form-error { font-size: .75rem; color: #e05252; margin-top: 4px; display: none; }
+  .form-group.has-error .form-error { display: block; }
+  .form-submit { width: 100%; padding: 16px; font-size: .95rem; border-radius: 12px; }
+  .success-msg {
+    display: none; text-align: center; padding: 32px;
+  }
+  .success-msg .check { font-size: 3rem; margin-bottom: 16px; }
+  .success-msg h3 { margin-bottom: 8px; color: var(--black); }
+  .success-msg p { color: var(--muted); }
+
+  /* ─── FOOTER ────────────────────────────────────────────── */
+  #footer {
+    background: var(--black);
+    padding: 64px 0 32px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px; margin-bottom: 48px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; color: var(--white);
+    margin-bottom: 16px;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-about { font-size: .85rem; color: rgba(255,255,255,.45); line-height: 1.7; max-width: 280px; }
+  .footer-socials { display: flex; gap: 12px; margin-top: 24px; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; color: rgba(255,255,255,.5);
+    transition: var(--transition);
+  }
+  .social-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--white); }
+  .footer-col h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .72rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { font-size: .85rem; color: rgba(255,255,255,.45); transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.07);
+    padding-top: 28px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-copy { font-size: .78rem; color: rgba(255,255,255,.3); }
+
+  /* ─── MOBILE NAV ────────────────────────────────────────── */
+  #mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(26,23,20,.97); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 32px;
+  }
+  #mobile-menu.open { display: flex; }
+  #mobile-menu a {
+    font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+    color: var(--white); text-align: center;
+    transition: color .2s;
+  }
+  #mobile-menu a:hover { color: var(--gold); }
+  #mobile-menu .close-btn {
+    position: absolute; top: 24px; right: 28px;
+    background: none; border: none; color: var(--white);
+    font-size: 2rem; cursor: pointer;
+  }
+
+  /* ─── ANIMATIONS ────────────────────────────────────────── */
+  .fade-up {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-grid, .location-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .slide { height: 360px; }
+    .about-img { height: 300px; }
+  }
+  @media (max-width: 600px) {
+    .section { padding: 64px 0; }
+    .hero-btns { flex-direction: column; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .slide { height: 260px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .amenities-grid { grid-template-columns: 1fr 1fr; }
+    .form-card { padding: 28px 20px; }
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════ NAVBAR ════════════ -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="#">Villa <span>Serena</span></a>
+    <ul class="nav-links">
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#location">Location</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact" class="nav-cta">Book Now</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" role="dialog" aria-modal="true">
+  <button class="close-btn" id="closeMenu" aria-label="Close menu">✕</button>
+  <a href="#gallery" class="mm-link">Gallery</a>
+  <a href="#about" class="mm-link">About</a>
+  <a href="#amenities" class="mm-link">Amenities</a>
+  <a href="#location" class="mm-link">Location</a>
+  <a href="#reviews" class="mm-link">Reviews</a>
+  <a href="#contact" class="mm-link">Book Now</a>
+</div>
+
+<!-- ════════════ HERO ════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content fade-up visible">
+      <div class="hero-badge">Ideal for couples &amp; families · Coastal Escape</div>
+      <h1 class="hero-title">Wake Up to <em>Sea &amp; Silence.</em></h1>
+      <p class="hero-sub">A sun-drenched villa perched above the bay — where luxury meets the unhurried rhythm of coastal living.</p>
+      <div class="hero-btns">
+        <a href="#gallery" class="btn btn-primary">✦ View Photos</a>
+        <a href="#contact" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ════════════ GALLERY ════════════ -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-header fade-up">
+      <p class="section-label">Photo Gallery</p>
+      <h2>Explore the Space</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="slider-wrap fade-up">
+      <div class="slider-main" id="slider">
+        <div class="slide active"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&q=80" alt="Villa exterior with pool" loading="lazy"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1400&q=80" alt="Bright living room" loading="lazy"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1400&q=80" alt="Master bedroom" loading="lazy"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=80" alt="Gourmet kitchen" loading="lazy"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1400&q=80" alt="Private pool terrace" loading="lazy"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=1400&q=80" alt="Outdoor dining area" loading="lazy"></div>
+      </div>
+      <button class="slider-btn slider-prev" id="prevBtn" aria-label="Previous">&#8592;</button>
+      <button class="slider-btn slider-next" id="nextBtn" aria-label="Next">&#8594;</button>
+    </div>
+
+    <div class="slider-dots" id="dots"></div>
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous">&#8592;</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-arrow lb-next" id="lbNext" aria-label="Next">&#8594;</button>
+</div>
+
+<!-- ════════════ ABOUT ════════════ -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img fade-up">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80" alt="Villa exterior">
+      </div>
+      <div class="about-text fade-up">
+        <p class="section-label">About the Stay</p>
+        <h2>Your Private <em class="serif" style="font-style:italic;color:var(--gold)">Coastal</em> Haven</h2>
+        <div class="divider"></div>
+        <p>Nestled on a sun-kissed hillside overlooking the Aegean, Villa Serena is a thoughtfully designed retreat where understated luxury and natural beauty converge. Every detail — from the hand-laid stone floors to the panoramic sea-view terraces — has been curated with the discerning traveller in mind.</p>
+        <p>Whether you're lounging by the infinity pool, cooking a slow dinner in the fully-equipped gourmet kitchen, or watching the sun dip below the horizon with a glass of local wine, Villa Serena delivers an experience that feels both indulgent and effortlessly at home.</p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🛏</div>
+            <div class="stat-value">3</div>
+            <div class="stat-label">Bedrooms</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🚿</div>
+            <div class="stat-value">2</div>
+            <div class="stat-label">Bathrooms</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-value">6</div>
+            <div class="stat-label">Guests</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📐</div>
+            <div class="stat-value">180</div>
+            <div class="stat-label">Sq. Metres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ AMENITIES ════════════ -->
+<section id="amenities" class="section">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">What's Included</p>
+      <h2>Amenities</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="amenities-grid">
+      <div class="amenity fade-up">
+        <div class="amenity-icon">📶</div>
+        <div><div class="amenity-name">High-Speed Wi-Fi</div><div class="amenity-desc">Fibre, 300 Mbps</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">❄️</div>
+        <div><div class="amenity-name">Air Conditioning</div><div class="amenity-desc">All rooms</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">🍳</div>
+        <div><div class="amenity-name">Gourmet Kitchen</div><div class="amenity-desc">Fully equipped</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">📺</div>
+        <div><div class="amenity-name">Smart TV</div><div class="amenity-desc">Netflix &amp; Streaming</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">🚗</div>
+        <div><div class="amenity-name">Free Parking</div><div class="amenity-desc">Private driveway</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">🌿</div>
+        <div><div class="amenity-name">Terrace &amp; Garden</div><div class="amenity-desc">Sea views</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">👕</div>
+        <div><div class="amenity-name">Washing Machine</div><div class="amenity-desc">With dryer</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">🐾</div>
+        <div><div class="amenity-name">Pet Friendly</div><div class="amenity-desc">Small pets welcome</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">🏊</div>
+        <div><div class="amenity-name">Private Pool</div><div class="amenity-desc">Heated infinity pool</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">☕</div>
+        <div><div class="amenity-name">Espresso Machine</div><div class="amenity-desc">Nespresso included</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">🔥</div>
+        <div><div class="amenity-name">BBQ Grill</div><div class="amenity-desc">Outdoor terrace</div></div>
+      </div>
+      <div class="amenity fade-up">
+        <div class="amenity-icon">🛡</div>
+        <div><div class="amenity-name">Safe &amp; Security</div><div class="amenity-desc">In-room safe</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ LOCATION ════════════ -->
+<section id="location" class="section">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">Where We Are</p>
+      <h2>Location</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="location-grid">
+      <div class="fade-up">
+        <div class="map-wrap">
+          <!-- Replace lat/lng in the URL for your actual property location -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12568.048876783!2d23.7275!3d37.9755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd1f067043f1%3A0x2736354576668ddd!2sAthens%2C%20Greece!5e0!3m2!1sen!2sgr!4v1697000000000"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Property Location Map">
+          </iframe>
+        </div>
+      </div>
+      <div class="fade-up">
+        <h3 style="margin-bottom:12px;">In the Heart of It All</h3>
+        <p style="margin-bottom:28px;font-size:1rem;line-height:1.8;">Villa Serena is set in a tranquil hillside neighbourhood, minutes from a crystal-clear cove and a short drive to charming local tavernas, boutique shops, and ancient landmarks. The best of coastal Greece is right at your doorstep.</p>
+        <div class="pois">
+          <div class="poi">
+            <div class="poi-icon">🏖</div>
+            <div><div class="poi-name">Private Beach Cove</div><div class="poi-dist">3 min walk</div></div>
+          </div>
+          <div class="poi">
+            <div class="poi-icon">🍽</div>
+            <div><div class="poi-name">Local Tavernas &amp; Restaurants</div><div class="poi-dist">5 min walk</div></div>
+          </div>
+          <div class="poi">
+            <div class="poi-icon">🏛</div>
+            <div><div class="poi-name">Historic Old Town</div><div class="poi-dist">12 min drive</div></div>
+          </div>
+          <div class="poi">
+            <div class="poi-icon">🛒</div>
+            <div><div class="poi-name">Supermarket &amp; Pharmacy</div><div class="poi-dist">8 min walk</div></div>
+          </div>
+          <div class="poi">
+            <div class="poi-icon">✈️</div>
+            <div><div class="poi-name">International Airport</div><div class="poi-dist">35 min drive</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ REVIEWS ════════════ -->
+<section id="reviews" class="section">
+  <div class="container">
+    <div class="fade-up" style="max-width:560px;">
+      <p class="section-label">Guest Reviews</p>
+      <h2 style="color:var(--white)">What Our Guests Say</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Absolutely breathtaking. The pool view at sunset is something we'll never forget. The villa is immaculate, stylish, and the host thought of every little detail. Already planning our return."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">S</div>
+          <div>
+            <div class="reviewer-name">Sophie & Marc L.</div>
+            <div class="reviewer-date">Paris, France · July 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The most beautiful place we've ever stayed. Every morning waking up to that sea view felt like a dream. Kids loved the pool, we loved the peace and quiet. A genuine 10/10."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">E</div>
+          <div>
+            <div class="reviewer-name">Emma &amp; James T.</div>
+            <div class="reviewer-date">London, UK · August 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"We travel often and Villa Serena stands out even among luxury properties. The location is unbeatable, the interiors are stunning, and the kitchen is a dream for a home cook."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">A</div>
+          <div>
+            <div class="reviewer-name">Aleksandra M.</div>
+            <div class="reviewer-date">Warsaw, Poland · June 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Celebrated our anniversary here and it was perfect. The host was incredibly attentive, the villa is even more beautiful in person, and the whole experience felt like a private resort."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">L</div>
+          <div>
+            <div class="reviewer-name">Lorenzo &amp; Giulia B.</div>
+            <div class="reviewer-date">Milan, Italy · September 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Spotlessly clean, beautifully decorated, and the outdoor terrace BBQ made evenings magical. The beach access is a short stroll — ideal for families. We'll be back next summer!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">N</div>
+          <div>
+            <div class="reviewer-name">Natalie &amp; Chris F.</div>
+            <div class="reviewer-date">Amsterdam, NL · May 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"From check-in to check-out, everything was seamless and luxurious. The villa photographs beautifully but is even better in real life. Highly recommend for a romantic getaway."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">D</div>
+          <div>
+            <div class="reviewer-name">Diana K.</div>
+            <div class="reviewer-date">Dubai, UAE · April 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CONTACT ════════════ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <p class="section-label">Get in Touch</p>
+        <h2>Request<br>Availability</h2>
+        <div class="divider"></div>
+        <p>Ready to plan your escape? Fill in the form and we'll get back to you within 24 hours with availability and pricing.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📞</div>
+          <div class="contact-detail-text">
+            <strong>Phone / WhatsApp</strong>
+            <span>+30 694 000 0000</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div class="contact-detail-text">
+            <strong>Email</strong>
+            <span>hello@villaserena.com</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            <strong>Address</strong>
+            <span>Imerovigli 84700, Santorini, Greece</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card fade-up">
+        <div id="contactForm">
+          <div class="form-row">
+            <div class="form-group" id="grp-name">
+              <label for="fname">Full Name</label>
+              <input type="text" id="fname" placeholder="Your full name">
+              <div class="form-error">Please enter your name.</div>
+            </div>
+            <div class="form-group" id="grp-email">
+              <label for="femail">Email</label>
+              <input type="email" id="femail" placeholder="your@email.com">
+              <div class="form-error">Please enter a valid email.</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" id="grp-phone">
+              <label for="fphone">Phone</label>
+              <input type="tel" id="fphone" placeholder="+1 234 567 890">
+              <div class="form-error">Please enter your phone.</div>
+            </div>
+            <div class="form-group">
+              <label for="fguests">Guests</label>
+              <select id="fguests">
+                <option value="">Select guests</option>
+                <option>1–2 guests</option>
+                <option>3–4 guests</option>
+                <option>5–6 guests</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" id="grp-checkin">
+              <label for="fcheckin">Check-in Date</label>
+              <input type="date" id="fcheckin">
+              <div class="form-error">Please select check-in date.</div>
+            </div>
+            <div class="form-group" id="grp-checkout">
+              <label for="fcheckout">Check-out Date</label>
+              <input type="date" id="fcheckout">
+              <div class="form-error">Please select check-out date.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fmsg">Message</label>
+            <textarea id="fmsg" placeholder="Tell us about your trip, any special requests, questions…"></textarea>
+          </div>
+          <button class="btn btn-primary form-submit" id="submitBtn" type="button">
+            ✦ Book Your Stay
+          </button>
+        </div>
+        <div class="success-msg" id="successMsg">
+          <div class="check">✦</div>
+          <h3>Enquiry Sent!</h3>
+          <p>Thank you for reaching out. We'll confirm availability and get back to you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Villa <span>Serena</span></div>
+        <p class="footer-about">A premium coastal retreat on the sun-kissed shores of the Aegean. Crafted for those who seek beauty, stillness, and the finest in understated luxury.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="Instagram">𝔦</a>
+          <a href="#" class="social-btn" aria-label="Facebook">𝔣</a>
+          <a href="#" class="social-btn" aria-label="WhatsApp">✆</a>
+          <a href="#" class="social-btn" aria-label="Airbnb">✦</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+306940000000">+30 694 000 0000</a></li>
+          <li><a href="mailto:hello@villaserena.com">hello@villaserena.com</a></li>
+          <li><a href="#location">Imerovigli 84700<br>Santorini, Greece</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="#">Booking Policy</a></li>
+          <li><a href="#">Cancellation</a></li>
+          <li><a href="#">House Rules</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Villa Serena. All rights reserved. Designed with ✦</p>
+      <p class="footer-copy">Template — edit freely for your clients.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Navbar scroll ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── Mobile menu ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeMenu  = document.getElementById('closeMenu');
+hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('.mm-link').forEach(a => {
+  a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+});
+
+// ── Slider ──
+const slides = document.querySelectorAll('.slide');
+const dotsEl = document.getElementById('dots');
+const thumbsEl = document.getElementById('thumbs');
+const sliderEl = document.getElementById('slider');
+let current = 0, autoTimer;
+
+const images = [
+  { src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=70', alt: 'Villa exterior with pool' },
+  { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=70', alt: 'Bright living room' },
+  { src: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=400&q=70', alt: 'Master bedroom' },
+  { src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=70', alt: 'Gourmet kitchen' },
+  { src: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=400&q=70', alt: 'Private pool terrace' },
+  { src: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=400&q=70', alt: 'Outdoor dining area' },
+];
+
+// Build dots & thumbs
+images.forEach((img, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i===0?' active':'');
+  dot.addEventListener('click', () => goTo(i));
+  dotsEl.appendChild(dot);
+
+  const th = document.createElement('div');
+  th.className = 'thumb' + (i===0?' active':'');
+  th.innerHTML = `<img src="${img.src}" alt="${img.alt}" loading="lazy">`;
+  th.addEventListener('click', () => { goTo(i); openLightbox(i); });
+  thumbsEl.appendChild(th);
+});
+
+function goTo(n) {
+  slides[current].classList.remove('active');
+  dotsEl.children[current].classList.remove('active');
+  thumbsEl.children[current].classList.remove('active');
+  current = (n + slides.length) % slides.length;
+  sliderEl.style.transform = `translateX(-${current * 100}%)`;
+  slides[current].classList.add('active');
+  dotsEl.children[current].classList.add('active');
+  thumbsEl.children[current].classList.add('active');
+}
+function next() { goTo(current + 1); }
+function prev() { goTo(current - 1); }
+
+document.getElementById('nextBtn').addEventListener('click', () => { clearInterval(autoTimer); next(); startAuto(); });
+document.getElementById('prevBtn').addEventListener('click', () => { clearInterval(autoTimer); prev(); startAuto(); });
+
+function startAuto() { autoTimer = setInterval(next, 5000); }
+startAuto();
+
+// Touch/swipe on slider
+let touchStartX = 0;
+sliderEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+sliderEl.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 40) { clearInterval(autoTimer); dx < 0 ? next() : prev(); startAuto(); }
+});
+
+// Click slide to open lightbox
+slides.forEach((sl, i) => sl.addEventListener('click', () => openLightbox(i)));
+
+// ── Lightbox ──
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+let lbIndex = 0;
+const fullImages = [
+  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&q=85',
+  'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1400&q=85',
+  'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1400&q=85',
+  'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=85',
+  'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1400&q=85',
+  'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=1400&q=85',
+];
+function openLightbox(i) {
+  lbIndex = i;
+  lbImg.src = fullImages[i];
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if(e.target===lightbox) closeLightbox(); });
+document.getElementById('lbPrev').addEventListener('click', () => {
+  lbIndex = (lbIndex - 1 + fullImages.length) % fullImages.length;
+  lbImg.src = fullImages[lbIndex];
+});
+document.getElementById('lbNext').addEventListener('click', () => {
+  lbIndex = (lbIndex + 1) % fullImages.length;
+  lbImg.src = fullImages[lbIndex];
+});
+document.addEventListener('keydown', e => {
+  if(!lightbox.classList.contains('open')) return;
+  if(e.key==='Escape') closeLightbox();
+  if(e.key==='ArrowRight') document.getElementById('lbNext').click();
+  if(e.key==='ArrowLeft')  document.getElementById('lbPrev').click();
+});
+
+// ── Scroll animations ──
+const fadeEls = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, idx) => {
+    if(entry.isIntersecting) {
+      // Stagger siblings
+      const siblings = entry.target.closest('.amenities-grid, .reviews-grid, .stats-grid');
+      if(siblings) {
+        const all = siblings.querySelectorAll('.fade-up');
+        all.forEach((el, i) => {
+          setTimeout(() => el.classList.add('visible'), i * 80);
+        });
+      } else {
+        entry.target.classList.add('visible');
+      }
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+fadeEls.forEach(el => observer.observe(el));
+
+// ── Contact form ──
+document.getElementById('submitBtn').addEventListener('click', () => {
+  const name    = document.getElementById('fname');
+  const email   = document.getElementById('femail');
+  const phone   = document.getElementById('fphone');
+  const checkin = document.getElementById('fcheckin');
+  const checkout= document.getElementById('fcheckout');
+  let valid = true;
+
+  const checks = [
+    { grp:'grp-name',     el: name,    test: v => v.trim().length > 1 },
+    { grp:'grp-email',    el: email,   test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+    { grp:'grp-phone',    el: phone,   test: v => v.trim().length > 5 },
+    { grp:'grp-checkin',  el: checkin, test: v => !!v },
+    { grp:'grp-checkout', el: checkout,test: v => !!v },
+  ];
+
+  checks.forEach(c => {
+    const grp = document.getElementById(c.grp);
+    if(!c.test(c.el.value)) {
+      grp.classList.add('has-error');
+      c.el.classList.add('error');
+      valid = false;
+    } else {
+      grp.classList.remove('has-error');
+      c.el.classList.remove('error');
+    }
+  });
+
+  if(valid) {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('successMsg').style.display  = 'block';
+  }
+});
+
+// ── Set min date for date inputs ──
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('fcheckin').min  = today;
+document.getElementById('fcheckout').min = today;
+document.getElementById('fcheckin').addEventListener('change', function() {
+  document.getElementById('fcheckout').min = this.value;
+});
+</script>
+</body>
+</html>
